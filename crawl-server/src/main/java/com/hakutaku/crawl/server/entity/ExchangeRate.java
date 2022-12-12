@@ -1,4 +1,4 @@
-package com.kakutaku.cawl.server.entity;
+package com.hakutaku.crawl.server.entity;
 
 import java.math.BigDecimal;
 import java.util.Date;

@@ -1,4 +1,4 @@
-package com.kakutaku.cawl.server.utils;
+package com.hakutaku.crawl.server.utils;
 
 import org.apache.http.HttpEntity;
 import org.apache.http.NameValuePair;

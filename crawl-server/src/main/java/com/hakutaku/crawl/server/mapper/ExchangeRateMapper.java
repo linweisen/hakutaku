@@ -1,6 +1,6 @@
-package com.kakutaku.cawl.server.mapper;
+package com.hakutaku.crawl.server.mapper;
 
-import com.kakutaku.cawl.server.entity.ExchangeRate;
+import com.hakutaku.crawl.server.entity.ExchangeRate;
 
 public interface ExchangeRateMapper {
 

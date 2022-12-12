@@ -1,4 +1,4 @@
-package com.kakutaku.cawl.server;
+package com.hakutaku.crawl.server;
 
 import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.boot.SpringApplication;

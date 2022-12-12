@@ -1,12 +1,13 @@
-package com.kakutaku.cawl.server.cron;
+package com.hakutaku.crawl.server.cron;
 
-import com.kakutaku.cawl.server.entity.ExchangeRate;
-import com.kakutaku.cawl.server.mapper.ExchangeRateMapper;
-import com.kakutaku.cawl.server.utils.HttpUtils;
+import com.hakutaku.crawl.server.entity.ExchangeRate;
+import com.hakutaku.crawl.server.mapper.ExchangeRateMapper;
+import com.hakutaku.crawl.server.utils.HttpUtils;
 import net.sf.json.JSONObject;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.scheduling.annotation.EnableScheduling;
 import org.springframework.scheduling.annotation.Scheduled;
@@ -23,11 +24,17 @@ public class ExchangeRateCrawlTask {
     @Autowired
     private ExchangeRateMapper exchangeRateMapper;
 
+    @Value("et.app_id")
+    private String appId;
+
+    @Value("et.app_secret")
+    private String appSecret;
+
     @PostConstruct
     @Scheduled(cron = "0 0 */1 * * ?")
     public void task() {
         logger.info("启动汇率线程");
-        String r = HttpUtils.get("https://www.mxnzp.com/api/exchange_rate/aim?from=USD&to=CNY&app_id=tihneotkisusvmev&app_secret=OGpaU3BrWTZTUjJpNGZDa1VJdnVZdz09");
+        String r = HttpUtils.get(String.format("https://www.mxnzp.com/api/exchange_rate/aim?from=USD&to=CNY&app_id=%s&app_secret=%s", appId, appSecret));
         JSONObject jsonObject = JSONObject.fromObject(r);
         if (jsonObject.getInt("code") == 1) {
             JSONObject data = jsonObject.getJSONObject("data");

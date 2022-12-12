@@ -53,17 +53,15 @@ spring:
     date-format: yyyy-MM-dd HH:mm:ss
     time-zone: GMT+8
 
-# MyBatis
 mybatis:
   # 搜索指定包别名
-  typeAliasesPackage: com.chinaunicom.monitor.**.entity
+  typeAliasesPackage: com.hakutaku.crawl.server.**.entity
   # 配置mapper的扫描，找到所有的mapper.xml映射文件
   mapperLocations: classpath:mybatis/mapper/**/*Mapper.xml
   # 加载全局的配置文件
   configLocation: classpath:mybatis/mybatis-config.xml
 
 
-logging:
-  level:
-    com.chinaunicom: debug
-    org.springframework: info
+et:
+  app_id: tihneotkisusvmev
+  app_secret: OGpaU3BrWTZTUjJpNGZDa1VJdnVZdz09

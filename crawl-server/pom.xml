@@ -140,7 +140,7 @@
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
                 <configuration>
-                    <mainClass>com.kakutaku.cawl.server.CrawlServer</mainClass>
+                    <mainClass>com.hakutaku.crawl.server.CrawlServer</mainClass>
                 </configuration>
                 <executions>
                     <execution>
