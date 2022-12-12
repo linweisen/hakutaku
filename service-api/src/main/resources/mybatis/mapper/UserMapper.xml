@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.hakutaku.service.api.mapper.UserMapper">
+  <resultMap id="BaseResultMap" type="com.hakutaku.service.common.model.User">
+    <result column="id" jdbcType="BIGINT" property="id" />
+    <result column="username" jdbcType="VARCHAR" property="username" />
+    <result column="password" jdbcType="VARCHAR" property="password" />
+    <result column="first_name" jdbcType="VARCHAR" property="firstName" />
+    <result column="last_name" jdbcType="VARCHAR" property="lastName" />
+    <result column="email" jdbcType="VARCHAR" property="email" />
+    <result column="phone_number" jdbcType="VARCHAR" property="phoneNumber" />
+    <result column="status" jdbcType="INTEGER" property="status" />
+    <result column="last_login_time" jdbcType="TIMESTAMP" property="lastLoginTime" />
+  </resultMap>
+  <insert id="insert" parameterType="com.hakutaku.service.common.model.User">
+    insert into user (id, username, password, 
+      first_name, last_name, email, 
+      phone_number, status)
+    values (#{id,jdbcType=BIGINT}, #{username,jdbcType=VARCHAR}, #{password,jdbcType=VARCHAR}, 
+      #{firstName,jdbcType=VARCHAR}, #{lastName,jdbcType=VARCHAR}, #{email,jdbcType=VARCHAR}, 
+      #{phoneNumber,jdbcType=VARCHAR}, #{status,jdbcType=INTEGER})
+  </insert>
+  <insert id="insertSelective" parameterType="com.hakutaku.service.common.model.User">
+    insert into user
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="username != null">
+        username,
+      </if>
+      <if test="password != null">
+        password,
+      </if>
+      <if test="firstName != null">
+        first_name,
+      </if>
+      <if test="lastName != null">
+        last_name,
+      </if>
+      <if test="email != null">
+        email,
+      </if>
+      <if test="phoneNumber != null">
+        phone_number,
+      </if>
+      <if test="status != null">
+        status,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="username != null">
+        #{username,jdbcType=VARCHAR},
+      </if>
+      <if test="password != null">
+        #{password,jdbcType=VARCHAR},
+      </if>
+      <if test="firstName != null">
+        #{firstName,jdbcType=VARCHAR},
+      </if>
+      <if test="lastName != null">
+        #{lastName,jdbcType=VARCHAR},
+      </if>
+      <if test="email != null">
+        #{email,jdbcType=VARCHAR},
+      </if>
+      <if test="phoneNumber != null">
+        #{phoneNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null">
+        #{status,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <select id="findByUsername" resultMap="BaseResultMap">
+    select * from user where username = #{username}
+  </select>
+  <select id="findById" resultMap="BaseResultMap">
+    select * from user where id = #{id}
+  </select>
+  <select id="findAllUser" resultMap="BaseResultMap">
+    select * from user
+  </select>
+
+  <insert id="insertBatch" parameterType="java.util.List">
+    INSERT INTO user
+    (id, username, password,
+    first_name, last_name, email,
+    phone_number, status)
+    VALUES
+    <foreach collection ="list" item="user" separator =",">
+      (#{user.id,jdbcType=BIGINT}, #{user.username,jdbcType=VARCHAR}, #{user.password,jdbcType=VARCHAR},
+      #{user.firstName,jdbcType=VARCHAR}, #{user.lastName,jdbcType=VARCHAR}, #{user.email,jdbcType=VARCHAR},
+      #{user.phoneNumber,jdbcType=VARCHAR}, #{user.status,jdbcType=INTEGER})
+    </foreach >
+  </insert>
+</mapper>
