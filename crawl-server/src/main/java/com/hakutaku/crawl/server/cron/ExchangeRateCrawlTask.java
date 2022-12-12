@@ -24,10 +24,10 @@ public class ExchangeRateCrawlTask {
     @Autowired
     private ExchangeRateMapper exchangeRateMapper;
 
-    @Value("et.app_id")
+    @Value("${et.app_id}")
     private String appId;
 
-    @Value("et.app_secret")
+    @Value("${et.app_secret}")
     private String appSecret;
 
     @PostConstruct
