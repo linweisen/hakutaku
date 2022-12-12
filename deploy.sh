@@ -2,9 +2,9 @@
 
 git pull
 mvn package -Dmaven.test.skip=true
-cp digger-admin/target/digger-admin.jar .
+cp crawl-server/target/crawl-server-1.0-SNAPSHOT.jar .
 
-AppName=digger-admin.jar
+AppName=crawl-server-1.0-SNAPSHOT.jar
 
 # JVM参数
 JVM_OPTS="-Dname=$AppName  -Duser.timezone=Asia/Shanghai -Xms512M -Xmx512M -XX:PermSize=256M -XX:MaxPermSize=512M -XX:+HeapDumpOnOutOfMemoryError -XX:+PrintGCDateStamps  -XX:+PrintGCDetails -XX:NewRatio=1 -XX:SurvivorRatio=30 -XX:+UseParallelGC -XX:+UseParallelOldGC"
@@ -30,7 +30,7 @@ function start()
 	if [ x"$PID" != x"" ]; then
 	    echo "$AppName is running..."
 	else
-		nohup java -jar  $JVM_OPTS $AppName > /dev/null 2>&1 &
+		nohup java -jar $JVM_OPTS $AppName --spring.config.location=/root/application-prod.yml> /dev/null 2>&1 &
 		echo "Start $AppName success..."
 	fi
 }
